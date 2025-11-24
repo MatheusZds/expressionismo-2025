@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuário</title>
+    <!-- Inclui Tailwind CSS para estilização rápida e responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .register-card {
+            max-width: 420px;
+            width: 100%;
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.05);
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .input-field {
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            border-color: #ffffff; 
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+        }
+        .submit-btn {
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+        .submit-btn:hover {
+            background-color: #000000; 
+        }
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+        .message-box {
+            transition: opacity 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="register-card">
+        <h2 class="text-3xl font-bold text-gray-800 text-center mb-6">Crie sua Conta</h2>
+        <p class="text-center text-gray-500 mb-8">Rápido, fácil e seguro.</p>
+
+        <form id="register-form">
+            <!-- Campo Nome -->
+            <div class="mb-4">
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+                <input type="text" id="name" name="name" required
+                       class="input-field w-full p-3 border border-gray-300 rounded-lg focus:outline-none"
+                       placeholder="Seu nome">
+            </div>
+
+            <!-- Campo Email -->
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input type="email" id="email" name="email" required
+                       class="input-field w-full p-3 border border-gray-300 rounded-lg focus:outline-none"
+                       placeholder="exemplo@gmail.com">
+            </div>
+
+            <!-- Campo Telefone -->
+            <div class="mb-6">
+                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Telefone</label>
+                <input type="tel" id="phone" name="phone" required
+                       class="input-field w-full p-3 border border-gray-300 rounded-lg focus:outline-none"
+                       placeholder="(XX) XXXXX-XXXX">
+            </div>
+
+           
+            <button type="submit"
+                    class="submit-btn w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50">
+                Registrar
+            </button>
+        </form>
+
+        
+        <div id="message-box" class="message-box mt-6 p-4 text-sm rounded-lg text-center hidden opacity-0">
+            
+        </div>
+
+        <p class="text-center text-gray-500 text-sm mt-6">
+            Já tem uma conta? <a href="#" class="text-indigo-600 font-medium hover:underline">Faça Login</a>
+        </p>
+    </div>
+
+    <script>
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const messageBox = document.getElementById('message-box');
+
+            
+            console.log("Dados de Registro:");
+            console.log(`Nome: ${name}`);
+            console.log(`Email: ${email}`);
+            console.log(`Telefone: ${phone}`);
+
+            
+            messageBox.textContent = `Sucesso! Bem-vindo(a), ${name}. Seu cadastro com email ${email} e telefone ${phone} foi registrado.`;
+            messageBox.classList.remove('hidden', 'bg-red-100', 'text-red-800');
+            messageBox.classList.add('bg-green-100', 'text-green-800');
+            
+            
+            setTimeout(() => {
+                messageBox.classList.add('opacity-100');
+            }, 10);
+            
+           
+            this.reset();
+        });
+    </script>
+    
+</body>
+        
+</html>
